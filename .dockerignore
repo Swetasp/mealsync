@@ -1,0 +1,59 @@
+# Ignore Python cache & build files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Logs
+*.log
+logs/
+*.out
+*.err
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Tests & coverage
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Node (if frontend is added later)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Git metadata
+.git
+.gitignore
+
+# Docker-related
+Dockerfile*
+.dockerignore
+
+# Google Cloud SDK (if installed locally)
+google-cloud-sdk/
+
+# Local configs/secrets
+*.env
+*.venv
+secrets.json
+local_settings.py

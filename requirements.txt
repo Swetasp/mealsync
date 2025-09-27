@@ -1,0 +1,12 @@
+# Requirements for the FastAPI application
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+google-cloud-firestore==2.11.1
+google-cloud-secret-manager==2.16.3
+google-generativeai==0.3.0
+google-cloud-tasks==2.13.1
+firebase-admin==6.1.0
+httpx==0.25.0
+pydantic==2.5.0
+python-dotenv==1.0.0
+structlog==23.2.0

@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+*.env
+*.venv
+
+# Logs
+*.log
+logs/
+*.out
+*.err
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Docker
+*.pid
+*.seed
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Coverage & testing
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Node (if you add frontend assets)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Local dev overrides
+local_settings.py
+secrets.json
+
+# Google Cloud SDK
+google-cloud-sdk/
+
+# Ignore compiled wheels or archives
+*.whl
+*.tar.gz
