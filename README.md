@@ -14,23 +14,70 @@ MealSync is an AI-powered system built on Google Cloud that helps families conne
 
 ---
 
-## Flow
-`Intake (address + school)` → `Eligibility Explainer (Gemini)` → `Locator (Maps)` → `Calendar (pickup windows)` → `Push (reminders)` → `Impact (meals secured)`
+## Architecture
+mealsync/ # Backend (FastAPI + Google Cloud)
+│── main.py # FastAPI entry point
+│── agents/ # AI & workflow agents
+│── web/ # Static web build served by FastAPI
+│── requirements.txt # Backend dependencies
+│
+└── mealsync-ui/ # Frontend (React + Vite + Tailwind + Firebase)
+│── src/ # React source code
+│── public/ # Static assets
+│── package.json # Frontend dependencies
+
 
 ---
 
 ## Tech Stack
-- **Google Cloud Run** – serverless microservices  
-- **Firestore** – family profiles, sites, reminders  
-- **Vertex AI (Gemini)** – plain-language eligibility checks  
-- **Google Maps API** – geocoding + site lookup  
-- **Google Calendar & Gmail APIs** – scheduling + confirmations  
-- **Firebase Cloud Messaging (FCM)** – push notifications  
+- **Frontend:** React, Vite, TailwindCSS, Firebase Auth  
+- **Backend:** FastAPI, Python, Firestore, A2A protocol  
+- **Cloud:** Google Cloud Run, Firestore, Vertex AI (Gemini), Firebase Cloud Messaging  
+- **APIs:** Google Maps API, Google Calendar API, Gmail API  
 
 ---
 
 ## Quickstart
-1. Clone the repo  
-   ```bash
-   git clone https://github.com/your-org/mealsync.git
-   cd mealsync
+
+### Backend (FastAPI)
+```bash
+cd mealsync
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8080
+
+
+Backend will be live at:
+👉 http://localhost:8080
+
+Health check:
+
+curl http://localhost:8080/health
+
+Frontend (React + Vite)
+cd mealsync-ui
+npm install
+npm run dev
+
+
+Frontend will be live at:
+👉 http://localhost:5173
+
+Production build:
+
+npm run build
+
+
+The compiled frontend will be placed in /mealsync-ui/dist.
+You can copy this into /mealsync/web/ to serve via FastAPI.
+
+## Deployment
+
+Backend: Deploy mealsync on Google Cloud Run.
+
+Frontend: Either deploy separately (e.g. Vercel/Netlify) or serve build output through FastAPI.
+
+Database: Google Firestore for user + meals data.
+
+AI: Gemini (Vertex AI) for eligibility explanation.

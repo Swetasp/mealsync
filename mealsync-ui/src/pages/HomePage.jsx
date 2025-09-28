@@ -1,139 +1,117 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import GoogleSignInButton from "../components/GoogleSignInButton.jsx";
-import { useAuth } from "../AuthContext.jsx";
-
-/** Inline logo (you can swap to /assets/logo.svg anytime) */
-function MealSyncLogo({ className = "" }) {
-  return (
-    <div className={`flex items-center gap-3 ${className}`}>
-      <span className="text-3xl">🍎</span>
-      <span className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-        MealSync <span className="text-base font-semibold opacity-80">A2A</span>
-      </span>
-    </div>
-  );
-}
+import hero from "../assets/hero.svg"; // <-- add this import at top
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import GoogleSignInButton from '../components/GoogleSignInButton.jsx';
+import { useAuth } from '../AuthContext.jsx';
+import mealSyncLogo from '../assets/mealsync.svg'; 
+import subLogo from '../assets/sublogo.svg';
 
 export default function HomePage() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  // Auth gate: if not signed in, take them to /auth and remember intent
   const go = (path) => {
     if (user) navigate(path);
-    else navigate("/auth", { state: { from: { pathname: path } } });
+    else navigate('/auth', { state: { from: { pathname: path } } });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-fuchsia-600 text-white">
-      <div className="max-w-6xl mx-auto px-6 py-10">
+    <div className="min-h-screen bg-gray-50 text-gray-800">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <header className="flex items-center justify-between">
-        <img src="mealsync-ui/src/pages/mealsync.svg" alt="MealSync" className="h-8 sm:h-10" />
-          <div className="flex gap-3">
+          <div className="flex items-center gap-3">
+            <img src={mealSyncLogo} alt="MealSync Logo" className="h-10" />
+            <img src={subLogo} alt="sub-logo" className="h-10" />
+          </div>
+          <div className="flex items-center gap-4">
             {!user && <GoogleSignInButton />}
             <button
-              onClick={() => go("/intake")}
-              className="hidden sm:inline-flex items-center gap-2 rounded-xl px-4 py-2 bg-white/90 text-gray-900 font-semibold hover:bg-white transition"
+              onClick={() => go('/intake')}
+              className="hidden sm:inline-flex items-center gap-2 rounded-full px-6 py-3 bg-green-500 text-white font-semibold shadow-md hover:bg-green-600 transition-transform transform hover:scale-105"
             >
-              Create account
+              Get Started
             </button>
           </div>
         </header>
 
-        {/* Hero / Intro */}
-        <section className="mt-10 grid lg:grid-cols-2 gap-8 items-center">
-          <div className="bg-white/10 backdrop-blur rounded-3xl p-8 shadow-xl border border-white/10">
-            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight">
-              Access healthy meals for your family
-            </h1>
-            <p className="mt-4 text-white/90 text-lg">
-              Check eligibility, find nearby sites, and schedule pickups with reminders.
-              Private, fast, and friendly—no judgment, just support.
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button
-                onClick={() => go("/sites")}
-                className="inline-flex items-center gap-2 rounded-xl px-5 py-3 bg-white text-gray-900 font-semibold hover:opacity-90 transition"
-              >
-                Find nearby sites
-              </button>
-              <button
-                onClick={() => go("/eligibility")}
-                className="inline-flex items-center gap-2 rounded-xl px-5 py-3 bg-white/20 text-white backdrop-blur border border-white/30 hover:bg-white/25 transition"
-              >
-                Check eligibility
-              </button>
-            </div>
-
-            {!user && (
-              <p className="mt-4 text-sm text-white/85">
-                You’ll be asked to sign in before continuing.
-              </p>
-            )}
-          </div>
-
-          {/* Simple “illustration” panel (replace with an image if you like) */}
-          <div className="bg-white/10 backdrop-blur rounded-3xl p-8 shadow-xl border border-white/10">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-2xl h-28 bg-white/90" />
-              <div className="rounded-2xl h-28 bg-white/70" />
-              <div className="rounded-2xl h-28 bg-white/70" />
-              <div className="rounded-2xl h-28 bg-white/90" />
-            </div>
-            <p className="mt-4 text-white/90">
-              A single place to apply, schedule pickups, and stay on track.
-            </p>
+        {/* Hero Section */}
+        <section className="mt-16 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">
+            Nourishing Futures, One Meal at a Time
+          </h1>
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-gray-600">
+            MealSync simplifies access to meal programs. Check eligibility, find meal sites, and schedule pickups with ease. It's fast, private, and built for families like yours.
+          </p>
+          <div className="mt-8 flex justify-center gap-4">
+            <button
+              onClick={() => go('/sites')}
+              className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-green-500 text-white font-bold shadow-lg hover:bg-green-600 transition-transform transform hover:scale-105"
+            >
+              Find Meal Sites
+            </button>
+            <button
+              onClick={() => go('/eligibility')}
+              className="inline-flex items-center gap-3 rounded-full px-8 py-4 bg-white text-green-500 font-bold shadow-lg border border-green-200 hover:bg-green-50 transition-transform transform hover:scale-105"
+            >
+              Check Eligibility
+            </button>
           </div>
         </section>
-
-        {/* Feature Cards */}
-        <section className="mt-10">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="max-w-6xl mx-auto mt-10">
+  <div className="grid grid-cols-1 gap-6">
+    {/* LEFT CARD becomes full width */}
+    <div className="rounded-3xl bg-white/10 backdrop-blur p-8 shadow-xl">
+      {/* ...keep your title, paragraph, buttons here... */}
+    </div>
+  </div>
+</section>
+        {/* Feature Cards Section */}
+        <section className="mt-20">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeatureCard
-              emoji="💰"
-              title="Maximize Benefits"
-              desc="Identify all programs you may qualify for."
-              onClick={() => go("/eligibility")}
+              emoji="💡"
+              title="Instant Eligibility"
+              desc="Answer a few simple questions to see which meal programs you qualify for."
+              onClick={() => go('/eligibility')}
             />
             <FeatureCard
-              emoji="📝"
-              title="Simple Application"
-              desc="We pre-fill what we can and guide you—fast."
-              onClick={() => go("/intake")}
-            />
-            <FeatureCard
-              emoji="📍"
-              title="Find Nearby Sites"
-              desc="See locations and hours quickly."
-              onClick={() => go("/sites")}
+              emoji="🗺️"
+              title="Interactive Map"
+              desc="Find convenient meal pickup locations near you with an easy-to-use map."
+              onClick={() => go('/sites')}
             />
             <FeatureCard
               emoji="📅"
-              title="Schedule Pickups"
-              desc="Add pickups to your calendar with reminders."
-              onClick={() => go("/schedule")}
+              title="Seamless Scheduling"
+              desc="Schedule single or recurring meal pickups that sync with your personal calendar."
+              onClick={() => go('/schedule')}
             />
             <FeatureCard
-              emoji="🔐"
-              title="Private & Secure"
-              desc="Your information is protected and never sold."
-              onClick={() => go("/intake")}
+              emoji="🔔"
+              title="Smart Reminders"
+              desc="Get timely notifications so you never miss a meal pickup."
+              onClick={() => go('/intake')}
             />
             <FeatureCard
-              emoji="🌍"
-              title="Multiple Languages"
-              desc="Help in English, Spanish, and more."
-              onClick={() => go("/intake")}
+              emoji="🔒"
+              title="Private and Secure"
+              desc="Your data is encrypted and protected. We value your privacy and security."
+              onClick={() => go('/intake')}
+            />
+            <FeatureCard
+              emoji="🌐"
+              title="Community Focused"
+              desc="Join a network of families and providers dedicated to ending food insecurity."
+              onClick={() => go('/impact')}
             />
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="mt-12 text-center text-white/80 text-sm">
-          © {new Date().getFullYear()} MealSync • Built with love for families
+        <footer className="mt-20 text-center text-gray-500">
+          <p>© {new Date().getFullYear()} MealSync. All Rights Reserved.</p>
+          <p className="mt-2">Built with ❤️ for our community.</p>
         </footer>
       </div>
     </div>
@@ -142,14 +120,13 @@ export default function HomePage() {
 
 function FeatureCard({ emoji, title, desc, onClick }) {
   return (
-    <button
+    <div
       onClick={onClick}
-      className="text-left w-full rounded-2xl bg-white/10 hover:bg-white/15 transition p-6 border border-white/10"
+      className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer transform hover:-translate-y-2"
     >
-      <div className="text-3xl mb-2">{emoji}</div>
-      <div className="font-semibold text-white">{title}</div>
-      <div className="text-white/85 mt-1">{desc}</div>
-    </button>
+      <div className="text-4xl mb-4">{emoji}</div>
+      <h3 className="font-bold text-xl text-gray-900">{title}</h3>
+      <p className="mt-2 text-gray-600">{desc}</p>
+    </div>
   );
 }
-// Made with ❤️ by the MealSync team.

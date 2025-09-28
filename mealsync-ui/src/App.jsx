@@ -28,7 +28,7 @@ export default function App() {
             </h1>
             <p className="mt-4 text-white/90">
               Check eligibility, find nearby sites, and schedule pickups with reminders.
-              Private, fast, and friendly—no judgment, just support.
+              Private, fast, and friendly. No judgment, just support.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
