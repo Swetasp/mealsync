@@ -314,6 +314,8 @@ async def get_application_status(family_id: str):
 
 # ----- Utility / health -----
 
+# app.mount("/", StaticFiles(directory="web", html=True), name="static")
+
 @app.get("/health")
 async def health_check():
     return {"status": "healthy", "timestamp": datetime.utcnow().isoformat()}
@@ -379,6 +381,8 @@ async def startup_event():
 
 # ---------- Mount static site LAST ----------
 # This serves files from ./web and falls back to index.html (SPA)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))           # …/mealSync/mealsync
+WEB_DIR  = os.path.join(BASE_DIR, "web")   
 app.mount("/", StaticFiles(directory="web", html=True), name="web")
 
 @app.get("/api/me")

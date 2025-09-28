@@ -57,3 +57,16 @@ google-cloud-sdk/
 *.venv
 secrets.json
 local_settings.py
+
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+venv/
+node_modules/
+web-src/
+.git
+.gitignore

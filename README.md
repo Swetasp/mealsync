@@ -62,7 +62,7 @@ npm run dev
 
 
 Frontend will be live at:
-👉 http://localhost:5173
+👉 http://localhost:8080
 
 Production build:
 
@@ -76,7 +76,9 @@ You can copy this into /mealsync/web/ to serve via FastAPI.
 
 Backend: Deploy mealsync on Google Cloud Run.
 
-Frontend: Either deploy separately (e.g. Vercel/Netlify) or serve build output through FastAPI.
+Frontend: Deploy on Google Cloud Run.
+
+https://mealsync-175402345633.us-central1.run.app
 
 Database: Google Firestore for user + meals data.
 
